@@ -7,10 +7,6 @@ package com.javarush.test.level15.lesson12.home05;
 4. Исправьте модификаторы доступа конструкторов в SubSolution так, чтобы они соответствовали конструкторам класса Solution.
 */
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class Solution {
-
 }
 
