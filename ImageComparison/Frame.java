@@ -36,11 +36,10 @@ public class Frame { // pretty much all processing is done in the constructor
     }
 
     public boolean isEmpty() {
-        if (this.Neigbors() == 0) return true;
-        return false;
+        return  this.Neighbors() == 0;
     }
 
-    public int Neigbors() { //calculating number of neighbors (true values in the pixel map)
+    public int Neighbors() { //calculating number of neighbors (true values in the pixel map)
         int Neighbors = 0;
         for (int i = 0; i < 2 * size + 1; i++)
             for (int j = 0; j < 2 * size + 1; j++) {

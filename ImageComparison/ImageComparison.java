@@ -50,8 +50,8 @@ public class ImageComparison {
         Color c1 = null;
         Color c2 = null;
 
-        if ((img1.getHeight()==img2.getHeight())&&(img1.getWidth()==img2.getWidth()))
-        {
+        if (img1.getHeight()!=img2.getHeight()||img1.getWidth()!=img2.getWidth()) return null;
+
             for (int x=0; x<img1.getWidth(); x++)  // for all pixels comparing the colors, if different - put into the result map
                 for (int y=0; y<img1.getHeight(); y++) {
                 c1 = new Color(img1.getRGB(x,y));
@@ -65,7 +65,7 @@ public class ImageComparison {
                     }
                 }
 
-        }
+
 
         return result;
     }
@@ -92,7 +92,7 @@ public class ImageComparison {
                 //System.out.println(map);
                // System.out.println(x+", "+y);
                 ArrayList<Coordinates> coordinates = frame.getCoordinates(); // coordinates of the neighbors
-                for (int i = 0; i<frame.Neigbors(); i++)
+                for (int i = 0; i<frame.Neighbors(); i++)
                     FindContour(map, coordinates.get(i).x, coordinates.get(i).y, result); // do the same for each neighbor
             }
         }
