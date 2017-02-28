@@ -22,7 +22,7 @@ public class Solution {
             fileText =fileText+(char)reader.read(); //читаем один символ (char будет расширен до int)
         }
 
-        fileText.toLowerCase();
+        fileText=fileText.toLowerCase();
 
 
         for (char c: fileText.toCharArray()) {
