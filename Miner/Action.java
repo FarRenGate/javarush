@@ -3,37 +3,37 @@
  */
 public class Action {
     private Actions action;
-    private Coordinates coordinates, cellCoordinates;
+    private Coordinates coordinates, cellCoordinates; // coordinates - input coordinates, cellCoordinates - coordinates of the corresponding cell
 
-    public Action(Actions action, Coordinates coordinates) {
+    public Action(Actions action, Coordinates coordinates) { // construct action from activity and coordinates (not used here but probably will be used in the GUI version)
         this.action = action;
         this.coordinates = coordinates;
         this.cellCoordinates=CalculateCellCoordinates(this.coordinates);
     }
 
-    public Action (String action) {
-        this.action=Actions.ERROR;
-        this.coordinates=new Coordinates();
+    public Action (String action) {// construct action from string input
+        this.action=Actions.ERROR;// by default - error
+        this.coordinates=new Coordinates();// with 0 coordinates
 
         String[] CoordinatesAndAction;
 
-        CoordinatesAndAction=action.split(" ");
-        if (CoordinatesAndAction.length==3||CoordinatesAndAction.length==2) {
+        CoordinatesAndAction=action.split(" ");// separate input
+        if (CoordinatesAndAction.length==3||CoordinatesAndAction.length==2) {// must be either 2 or 3 parameters
 
-            if (CoordinatesAndAction.length == 2) {
-                this.action = Actions.CLICK;
+            if (CoordinatesAndAction.length == 2) {// if two parameters
+                this.action = Actions.CLICK;// click
             }
 
-            else {
-                this.action=Actions.FLAG;
+            else { // if 3
+                this.action=Actions.FLAG;// flag
 
             }
 
-            try {
-                this.coordinates.y = Integer.parseInt(CoordinatesAndAction[0]);
+            try {// if integers are typed
+                this.coordinates.y = Integer.parseInt(CoordinatesAndAction[0]);// just convert them (note that Y goes FIRST
                 this.coordinates.x = Integer.parseInt(CoordinatesAndAction[1]);
             }
-                catch (Exception e) {
+                catch (Exception e) { // if not - apparent ERROR
                     this.action = Actions.ERROR;
                     this.coordinates.x=0;
                     this.coordinates.y=0;
@@ -44,7 +44,7 @@ public class Action {
         this.cellCoordinates=CalculateCellCoordinates(this.coordinates);
     }
 
-    private Coordinates CalculateCellCoordinates (Coordinates coordinates) {
+    private Coordinates CalculateCellCoordinates (Coordinates coordinates) {// needed to convert coordinates to cell coordinates (in the case of text input the difference is 1)
         Coordinates cellCoordinates = new Coordinates();
         cellCoordinates.x=coordinates.x-1;
         cellCoordinates.y=coordinates.y-1;
@@ -53,10 +53,6 @@ public class Action {
 
     public Actions getAction() {
         return action;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
     }
 
     public Coordinates getCellCoordinates() {

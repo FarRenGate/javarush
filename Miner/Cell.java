@@ -2,11 +2,10 @@
  * Created by User on 12/03/17.
  */
 public class Cell {
-    private int neighboringMines, isFlaggedOrOpen, x, y; //neighboringMines - number of neighboring mines (-1 - has mine); isFlaggedOrOpen: -1 flagged, 0 closed, 1 open;
+    private int neighboringMines, isFlaggedOrOpen; //neighboringMines - number of neighboring mines (-1 - has mine); isFlaggedOrOpen: -1 flagged, 0 closed, 1 open;
 
-    public Cell (int x, int y) {
-        this.x=x;
-        this.y=y;
+    public Cell () {
+
         this.neighboringMines=0;
         this.isFlaggedOrOpen=0;
     }
@@ -19,22 +18,22 @@ public class Cell {
         return this.isFlaggedOrOpen==0;
     }
 
-    public int getIsFlaggedOfOpen () {return this.isFlaggedOrOpen;}
+    public int getIsFlaggedOrOpen () {return this.isFlaggedOrOpen;}
 
     public void Open () {
-        if (this.isFlaggedOrOpen==0) {
-            this.isFlaggedOrOpen=1;
+        if (this.isFlaggedOrOpen==0) { // if the field is currently closed
+            this.isFlaggedOrOpen=1; // open the field
         }
     }
 
-    public int Flag () {
-       if (this.isFlaggedOrOpen==-1) {
-           this.isFlaggedOrOpen=0;
-           return -1;
+    public int PutFlag () {// returns change in flags number
+       if (this.isFlaggedOrOpen==-1) {//if already flagged
+           this.isFlaggedOrOpen=0;//close cell
+           return -1;// decrease number of flags
        }
-       else if (this.isFlaggedOrOpen==0) {
-           this.isFlaggedOrOpen=-1;
-           return 1;
+       else if (this.isFlaggedOrOpen==0) {// if closed
+           this.isFlaggedOrOpen=-1;// put flag
+           return 1;// increase number of flags
        }
        return 0;
     }
@@ -43,13 +42,7 @@ public class Cell {
         this.neighboringMines=-1;
     }
 
-    public void setNeighboringMines (int neighboringMines) {
-        if (neighboringMines>=0&&neighboringMines<=9) {
-            this.neighboringMines = neighboringMines;
-        }
-    }
-
-    public void AddNeigboringMine () {
+    public void AddNeighboringMine () {
         neighboringMines++;
     }
 
